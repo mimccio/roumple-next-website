@@ -7,9 +7,16 @@ import { useTranslation } from '@/app/i18n/client'
 import error404Img from '@/assets/error-404.png'
 import { defaultLocale } from '@/middleware'
 import { Header } from './components/header'
+import { useEffect, useState } from 'react'
 
 export default function NotFound() {
-  const lang = navigator ? navigator.language : defaultLocale
+  const [lang, setLang] = useState(defaultLocale)
+
+  useEffect(() => {
+    const lang = navigator ? navigator.language : defaultLocale
+    setLang(lang)
+  }, [])
+
   const { t } = useTranslation(lang, ['nav', 'message'])
 
   return (
