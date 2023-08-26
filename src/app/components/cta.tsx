@@ -1,4 +1,4 @@
-import { useTranslation } from '../i18n'
+import { useTranslation } from '@/app/i18n'
 
 interface Props {
   lang: string

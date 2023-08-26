@@ -1,40 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { match } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator'
+import acceptLanguage from 'accept-language'
+import { fallbackLng, languages } from './app/i18n/settings'
 
-let locales = ['en', 'fr']
-export let defaultLocale = 'en'
-
-function getLocale(request: Request): string {
-  const headers = new Headers(request.headers)
-  const acceptLanguage = headers.get('accept-language')
-  if (acceptLanguage) {
-    headers.set('accept-language', acceptLanguage.replaceAll('_', '-'))
-  }
-
-  const headersObject = Object.fromEntries(headers.entries())
-  const languages = new Negotiator({ headers: headersObject }).languages()
-  return match(languages, locales, defaultLocale)
-}
-
-export function middleware(request: NextRequest) {
-  let locale = getLocale(request) ?? defaultLocale
-  const pathname = request.nextUrl.pathname
-
-  const newUrl = new URL(`/${locale}${pathname}`, request.nextUrl)
-
-  // e.g. incoming request is /products
-  // The new URL is now /en/products
-  return NextResponse.rewrite(newUrl)
-}
+acceptLanguage.languages(languages)
 
 export const config = {
-  matcher: [
-    // Skip all internal paths (_next)
-    '/((?!_next|api|favicon.ico).*)',
-    // Optional: only run on root (/) URL
-    // '/'
-  ],
+  matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
 }
 
-// copied from https://github.com/anthonyshew/i18n-demo (https://www.youtube.com/watch?v=pZFHkigVdUU)
+const cookieName = 'i18next'
+
+export function middleware(req: NextRequest) {
+  let lng
+  if (req.cookies.has(cookieName)) lng = acceptLanguage.get(req.cookies.get(cookieName)?.value)
+  if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
+  if (!lng) lng = fallbackLng
+
+  // Redirect if lng in path is not supported
+  if (
+    !languages.some((loc) => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
+    !req.nextUrl.pathname.startsWith('/_next')
+  ) {
+    return NextResponse.rewrite(new URL(`/${lng}${req.nextUrl.pathname}`, req.url))
+  }
+
+  if (req.headers.has('referer')) {
+    const refererUrl = new URL(req.headers.get('referer') || '')
+    const lngInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
+    const response = NextResponse.next()
+    if (lngInReferer) response.cookies.set(cookieName, lngInReferer)
+    return response
+  }
+
+  return NextResponse.next()
+}
+
+// https://locize.com/blog/next-13-app-dir-i18n/

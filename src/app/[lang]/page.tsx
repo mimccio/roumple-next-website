@@ -3,25 +3,28 @@ import { Trans } from 'react-i18next/TransWithoutContext'
 import workflowImg from '@/assets/workflow.png'
 import orderCompletedImg from '@/assets/order-completed.png'
 import successImg from '@/assets/success.png'
-import { useTranslation } from '../i18n'
+import { useTranslation } from '@/app/i18n'
+
 import { Cta } from '../components/cta'
 import { Footer } from '../components/footer'
 import { HomeSection } from '../components/home-section'
 import { PresentationImage } from '../components/presentation-image'
 import { PresentationText } from '../components/presentation-text'
 import { Title } from '../components/title'
+import { Header } from '../components/header'
 
 interface Props {
   params: { lang: string }
 }
 
-export default async function Home({ params }: Props) {
-  const { t } = await useTranslation(params.lang, ['nav', 'home'])
+export default async function Home({ params: { lang } }: Props) {
+  const { t } = await useTranslation(lang, ['nav', 'home'])
 
   return (
     <>
+      <Header lang={lang} />
       <main className="mt-14 flex w-full flex-1 flex-col items-center gap-20 bg-gradient-to-b from-gray-100 to-indigo-100 px-8 py-20 lg:px-12">
-        <Title lang={params.lang} />
+        <Title lang={lang} />
 
         <HomeSection>
           <PresentationImage img={workflowImg} />
@@ -51,9 +54,9 @@ export default async function Home({ params }: Props) {
           />
         </HomeSection>
 
-        <Cta lang={params.lang} />
+        <Cta lang={lang} />
       </main>
-      <Footer lang={params.lang} />
+      <Footer lang={lang} />
     </>
   )
 }

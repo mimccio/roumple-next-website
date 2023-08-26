@@ -1,4 +1,4 @@
-import { useTranslation } from '../i18n'
+import { useTranslation } from '@/app/i18n'
 import { Logo } from './logo'
 
 interface Props {
@@ -9,8 +9,6 @@ const myRoumpleUrl = process.env.NEXT_PUBLIC_MY_ROUMPLE_URL
 
 export async function Header({ lang }: Props) {
   const { t } = await useTranslation(lang, 'nav')
-
-  console.log('lang :', lang)
 
   return (
     <header className="fixed left-0 right-0 top-0 z-10 flex h-14 items-center justify-end bg-gray-50 px-6 shadow-md 2xs:justify-between">
