@@ -5,15 +5,16 @@
 import Image from 'next/image'
 import { useTranslation } from '@/app/i18n/client'
 import error404Img from '@/assets/error-404.png'
+import { defaultLocale } from '@/middleware'
 import { Header } from './components/header'
 
 export default function NotFound() {
-  const { language } = navigator
-  const { t } = useTranslation(language, ['nav', 'message'])
+  const lang = navigator ? navigator.language : defaultLocale
+  const { t } = useTranslation(lang, ['nav', 'message'])
 
   return (
     <>
-      <Header lang={language} />
+      <Header lang={lang} />
       <main className="mt-14 flex w-full flex-1 flex-col items-center gap-20 bg-gradient-to-b from-gray-100 to-indigo-100 px-8 py-20 lg:px-12">
         <div className="flex w-full flex-1 flex-col">
           <h4 className="mx-auto mt-20 text-center font-semibold text-gray-400 lg:text-lg">
