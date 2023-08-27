@@ -22,41 +22,34 @@ export default async function Home({ params: { lang } }: Props) {
 
   return (
     <>
-      <Header lang={lang} />
-      <main className="mt-14 flex w-full flex-1 flex-col items-center gap-20 bg-gradient-to-b from-gray-100 to-indigo-100 px-8 py-20 lg:px-12">
-        <Title lang={lang} />
+      <Title lang={lang} />
 
-        <HomeSection>
-          <PresentationImage img={workflowImg} />
-          <PresentationText
-            title={t('create.title', { ns: 'home' })}
-            description={t('create.description', { ns: 'home' })}
-          />
-        </HomeSection>
+      <HomeSection>
+        <PresentationImage img={workflowImg} />
+        <PresentationText
+          title={t('create.title', { ns: 'home' })}
+          description={t('create.description', { ns: 'home' })}
+        />
+      </HomeSection>
 
-        <HomeSection>
-          <PresentationText title={t('follow.title', { ns: 'home' })}>
-            <p className="font-semibold text-gray-500">
-              <Trans i18nKey="follow.description" ns="home" t={t}>
-                <span className="text-indigo-700">Daily</span>, <span className="text-sky-700">weekly</span> and
-                <span className="text-purple-700">monthly</span> routines
-              </Trans>
-            </p>
-          </PresentationText>
-          <PresentationImage img={orderCompletedImg} />
-        </HomeSection>
+      <HomeSection>
+        <PresentationText title={t('follow.title', { ns: 'home' })}>
+          <p className="font-semibold text-gray-500">
+            <Trans i18nKey="follow.description" ns="home" t={t}>
+              <span className="text-indigo-700">Daily</span>, <span className="text-sky-700">weekly</span> and
+              <span className="text-purple-700">monthly</span> routines
+            </Trans>
+          </p>
+        </PresentationText>
+        <PresentationImage img={orderCompletedImg} />
+      </HomeSection>
 
-        <HomeSection>
-          <PresentationImage img={successImg} />
-          <PresentationText
-            title={t('done.title', { ns: 'home' })}
-            description={t('done.description', { ns: 'home' })}
-          />
-        </HomeSection>
+      <HomeSection>
+        <PresentationImage img={successImg} />
+        <PresentationText title={t('done.title', { ns: 'home' })} description={t('done.description', { ns: 'home' })} />
+      </HomeSection>
 
-        <Cta lang={lang} />
-      </main>
-      <Footer lang={lang} />
+      <Cta lang={lang} />
     </>
   )
 }

@@ -3,6 +3,8 @@ import { Nunito } from 'next/font/google'
 import { cl } from '@/utils'
 import './globals.css'
 import { fallbackLng } from './i18n/settings'
+import { Header } from './components/header'
+import { Footer } from './components/footer'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -34,7 +36,12 @@ export default function RootLayout({ children, params }: Props) {
   return (
     <html lang={lang}>
       <body className={cl('flex h-full min-h-screen flex-col bg-gray-100 text-gray-700', nunito.className)}>
-        {children}
+        <Header lang={lang} />
+
+        <main className="mt-14 flex w-full flex-1 flex-col items-center gap-20 bg-gradient-to-b from-gray-100 to-indigo-100 px-8 py-20 lg:px-12">
+          {children}
+        </main>
+        <Footer lang={lang} />
       </body>
     </html>
   )
