@@ -12,7 +12,7 @@ export async function Cta({ lang }: Props) {
   return (
     <a
       href={myRoumpleUrl}
-      className="mx-4 my-16 block flex-wrap rounded-lg bg-indigo-400 px-10 py-4 text-center font-semibold text-white shadow-xl shadow-indigo-200 transition-all duration-200 hover:scale-105 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-300"
+      className="mx-4 my-16 block flex-wrap rounded-lg bg-indigo-400 px-10 py-4 text-center font-bold text-white shadow-xl shadow-indigo-200 transition-all duration-200 hover:scale-105 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-300"
     >
       <span className="text-center">{t('Go to my roumple', { ns: 'nav' })}</span>
     </a>
