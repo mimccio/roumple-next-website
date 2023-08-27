@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useTranslation } from '@/app/i18n'
 
 interface Props {
@@ -26,6 +27,15 @@ export async function Footer({ lang }: Props) {
             >
               {t('My roumple app', { ns: 'nav' })}
             </a>
+          </li>
+          <li>
+            <Link
+              prefetch={false}
+              href="tos"
+              className=" font-semibold text-indigo-600 transition-colors hover:text-indigo-700 lg:text-sm"
+            >
+              {t('tos', { ns: 'nav' })}
+            </Link>
           </li>
         </ol>
         <div className="flex justify-end">
