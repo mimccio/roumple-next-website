@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
+
 import { cl } from '@/utils'
 import { fallbackLng } from '../i18n/settings'
 import { Header } from '../components/header'

@@ -6,12 +6,10 @@ import successImg from '@/assets/success.png'
 import { useTranslation } from '@/app/i18n'
 
 import { Cta } from '../components/cta'
-import { Footer } from '../components/footer'
 import { HomeSection } from '../components/home-section'
 import { PresentationImage } from '../components/presentation-image'
 import { PresentationText } from '../components/presentation-text'
 import { Title } from '../components/title'
-import { Header } from '../components/header'
 
 interface Props {
   params: { lang: string }
