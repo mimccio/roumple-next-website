@@ -2,6 +2,10 @@
 
 // https://app.termly.io/dashboard/website/f420175c-39d4-4d50-887f-14b681a1a9de/terms-of-service
 
+export const metadata = {
+  title: 'TOS',
+}
+
 interface Props {
   params: { lang: string }
 }
@@ -9,7 +13,7 @@ interface Props {
 export default function Tos({ params: { lang } }: Props) {
   return (
     <div className="flex justify-center">
-      <div className="max-w-3xl m-12">
+      <div className="max-w-3xl ">
         {lang === 'fr' && (
           <p className="text-gray-500 mb-12 text-center">
             Les conditions générales d'utilisation traduites en français seront bientôt disponibles.
