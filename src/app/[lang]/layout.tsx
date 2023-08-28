@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import { Nunito } from 'next/font/google'
 
 import { cl } from '@/utils'
@@ -46,6 +47,7 @@ export default function RootLayout({ children, params }: Props) {
           {children}
         </main>
         <Footer lang={lang} />
+        <Analytics />
       </body>
     </html>
   )
