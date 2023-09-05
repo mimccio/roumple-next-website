@@ -1,0 +1,15 @@
+{
+  "welcome": "Welcome to <1>Roumple</1>",
+  "create": {
+    "title": "Create your routines and tasks",
+    "description": "Create your routines, tasks and notes and organize theme in categories"
+  },
+  "follow": {
+    "title": "Follow your todo list",
+    "description": "<0>Daily</0>, <2>weekly</2> and <4>monthly</4> tasks"
+  },
+  "done": {
+    "title": "Routine to habit",
+    "description": "Be persistant and it will soon become a habit :)"
+  }
+}
